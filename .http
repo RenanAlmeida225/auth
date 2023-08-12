@@ -1,5 +1,28 @@
 GET http://localhost:8080/api/admin HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLWFwaSIsInN1YiI6InRlc3RlQHRlc3QuY29tIiwiZXhwIjoxNjkxODU1MTc0fQ.s_MSk_XbzHDwMPaUH7PtmIuraTjwBHvxudLntNWtIlQ
 
 ###
 
 GET http://localhost:8080/api/user HTTP/1.1
+Authorization: Bearer XXX
+
+###
+
+POST http://localhost:8080/api/auth/register HTTP/1.1
+Content-Type: application/json
+
+{
+    "email":"teste@test.com",
+    "password":"12345678",
+    "role":"ADMIN"
+}
+
+###
+
+POST http://localhost:8080/api/auth/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "email":"teste@test.com",
+    "password":"12345678"
+}
