@@ -29,12 +29,14 @@ public class User implements UserDetails {
     private String id;
     private String email;
     private String password;
+    private boolean isEnabled;
     @Enumerated(EnumType.STRING)
     private Role role;
 
     public User(String email, String password, Role role) {
         this.email = email;
         this.password = password;
+        this.isEnabled = false;
         this.role = role;
     }
 
@@ -68,6 +70,6 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return this.isEnabled;
     }
 }
