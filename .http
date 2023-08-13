@@ -1,10 +1,10 @@
 GET http://localhost:8080/api/admin HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLWFwaSIsInN1YiI6InRlc3RlQHRlc3QuY29tIiwiZXhwIjoxNjkxODU1MTc0fQ.s_MSk_XbzHDwMPaUH7PtmIuraTjwBHvxudLntNWtIlQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLWFwaSIsInN1YiI6InRlc3RlQHRlc3QuY29tIiwiZXhwIjoxNjkxOTY3NTc5fQ.BJQCdRRqBdLprWQmRRo9EAQX2y4AJFRB0FNSw41_Swk
 
 ###
 
 GET http://localhost:8080/api/user HTTP/1.1
-Authorization: Bearer XXX
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLWFwaSIsInN1YiI6InRlc3RlQHRlc3QuY29tIiwiZXhwIjoxNjkxOTY3NTc5fQ.BJQCdRRqBdLprWQmRRo9EAQX2y4AJFRB0FNSw41_Swk
 
 ###
 
@@ -16,6 +16,10 @@ Content-Type: application/json
     "password":"12345678",
     "role":"ADMIN"
 }
+
+###
+
+GET http://localhost:8080/api/auth/confirmation/0afb7f60-018d-460e-b579-a40cea029d8c HTTP/1.1
 
 ###
 
