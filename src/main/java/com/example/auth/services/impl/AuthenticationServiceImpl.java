@@ -3,7 +3,6 @@ package com.example.auth.services.impl;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -29,9 +28,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public void register(RegisterDto data) {
-        UserDetails findByEmail = this.userRepository.findByEmail(data.email());
-        System.out.println("(email exists)==> " + findByEmail);
-        if (findByEmail != null)
+        if (this.userRepository.findByEmail(data.email()) != null)
             throw new RuntimeException("email not found");
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
         User user = new User(data.email(), encryptedPassword, data.role());
