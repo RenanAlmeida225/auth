@@ -1,5 +1,5 @@
 GET http://localhost:8080/api/admin HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLWFwaSIsInN1YiI6InRlc3RlQHRlc3QuY29tIiwiZXhwIjoxNjkxOTY3NTc5fQ.BJQCdRRqBdLprWQmRRo9EAQX2y4AJFRB0FNSw41_Swk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLWFwaSIsInN1YiI6InRlc3RlQHRlc3QuY29tIiwiZXhwIjoxNjkyMDIxMzY1fQ.CG28c7XQnv1CkJrCPjy9ArO4e9PrOE42Uh7U6D1qpHk
 
 ###
 
@@ -19,7 +19,7 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:8080/api/auth/confirmation/0afb7f60-018d-460e-b579-a40cea029d8c HTTP/1.1
+GET http://localhost:8080/api/auth/confirmation/10b158dc-3be8-440c-a396-69c4a6d5872e HTTP/1.1
 
 ###
 
