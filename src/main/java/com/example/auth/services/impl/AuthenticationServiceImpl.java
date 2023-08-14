@@ -13,6 +13,7 @@ import com.example.auth.entities.User;
 import com.example.auth.repositories.ConfirmationRepository;
 import com.example.auth.repositories.UserRepository;
 import com.example.auth.services.AuthenticationService;
+import com.example.auth.services.EmailService;
 import com.example.auth.services.TokenService;
 
 import lombok.RequiredArgsConstructor;
@@ -25,6 +26,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final ConfirmationRepository confirmationRepository;
     private final AuthenticationManager authenticationManager;
     private final TokenService tokenService;
+    private final EmailService emailService;
 
     @Override
     public void register(RegisterDto data) {
@@ -35,7 +37,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         Confirmation confirmation = new Confirmation(user);
         this.userRepository.save(user);
         this.confirmationRepository.save(confirmation);
-        /* send email to confirm email */
+        this.emailService.sendMailMessage(user.getEmail(), confirmation.getToken());
         return;
     }
 
