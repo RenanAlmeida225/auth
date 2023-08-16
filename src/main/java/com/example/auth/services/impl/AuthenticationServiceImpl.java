@@ -1,22 +1,21 @@
 package com.example.auth.services.impl;
 
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
-
 import com.example.auth.dtos.AuthenticationDto;
 import com.example.auth.dtos.RegisterDto;
 import com.example.auth.entities.Confirmation;
 import com.example.auth.entities.User;
+import com.example.auth.expections.EntityInvalidException;
 import com.example.auth.repositories.ConfirmationRepository;
 import com.example.auth.repositories.UserRepository;
 import com.example.auth.services.AuthenticationService;
 import com.example.auth.services.EmailService;
 import com.example.auth.services.TokenService;
-
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
@@ -31,7 +30,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
     public void register(RegisterDto data) {
         if (this.userRepository.findByEmail(data.email()) != null)
-            throw new RuntimeException("email not found");
+            throw new EntityInvalidException("user invalid");
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
         User user = new User(data.email(), encryptedPassword, data.role());
         Confirmation confirmation = new Confirmation(user);
