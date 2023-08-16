@@ -17,6 +17,5 @@ public class RouteController {
     @GetMapping("user")
     public ResponseEntity<String> routeUser() {
         return ResponseEntity.ok().body("Route User");
-    
     }
 }
