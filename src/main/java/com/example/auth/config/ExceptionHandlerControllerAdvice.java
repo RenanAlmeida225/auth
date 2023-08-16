@@ -1,7 +1,7 @@
 package com.example.auth.config;
 
 import com.example.auth.expections.AuthenticationException;
-import com.example.auth.expections.EntityInvalidExpection;
+import com.example.auth.expections.EntityInvalidException;
 import com.example.auth.expections.StandardException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,9 +14,9 @@ import java.time.Instant;
 @ControllerAdvice
 public class ExceptionHandlerControllerAdvice {
 
-    @ExceptionHandler({EntityInvalidExpection.class})
+    @ExceptionHandler({EntityInvalidException.class})
     @ResponseBody
-    public ResponseEntity<StandardException> entityInvalid(EntityInvalidExpection e) {
+    public ResponseEntity<StandardException> entityInvalid(EntityInvalidException e) {
         StandardException re = new StandardException(Instant.now(),
                 HttpStatus.BAD_REQUEST.value(),
                 "entity invalid",
