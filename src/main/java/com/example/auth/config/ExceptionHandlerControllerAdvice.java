@@ -16,7 +16,7 @@ public class ExceptionHandlerControllerAdvice {
 
     @ExceptionHandler({EntityInvalidException.class})
     @ResponseBody
-    public ResponseEntity<StandardException> entityInvalid(EntityInvalidException e) {
+    public ResponseEntity<StandardException> handleEntityInvalid(EntityInvalidException e) {
         StandardException re = new StandardException(Instant.now(),
                 HttpStatus.BAD_REQUEST.value(),
                 "entity invalid",
