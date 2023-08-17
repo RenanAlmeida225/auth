@@ -57,8 +57,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         UsernamePasswordAuthenticationToken usernamePassword = new UsernamePasswordAuthenticationToken(data.email(),
                 data.password());
         Authentication auth = this.authenticationManager.authenticate(usernamePassword);
-        String token = this.tokenService.generateToken((User) auth.getPrincipal());
-        return token;
+        return this.tokenService.generateToken((User) auth.getPrincipal());
     }
 
 }
