@@ -29,8 +29,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public void register(RegisterDto data) {
-        if (this.userRepository.findByEmail(data.email()) != null)
-            throw new EntityInvalidException("user invalid");
+        if (this.userRepository.findByEmail(data.email()) != null) throw new AuthenticationException("user not exists");
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
         User user = new User(data.email(), encryptedPassword, data.role());
         Confirmation confirmation = new Confirmation(user);
@@ -43,7 +42,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
     public boolean confirmEmail(String token) {
         Confirmation confirmation = this.confirmationRepository.findByToken(token)
-                .orElseThrow(() -> new RuntimeException("token invalid"));
+                .orElseThrow(() -> new EntityInvalidException("token invalid"));
         User user = confirmation.getUser();
         user.setEnabled(true);
         this.userRepository.save(user);
