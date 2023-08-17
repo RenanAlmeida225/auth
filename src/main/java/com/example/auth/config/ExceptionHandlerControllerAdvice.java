@@ -27,8 +27,11 @@ public class ExceptionHandlerControllerAdvice {
     @ExceptionHandler({AuthenticationException.class})
     @ResponseBody
     public ResponseEntity<StandardException> handleAuthenticationException(Exception ex) {
-        StandardException re = new StandardException(Instant.now(), HttpStatus.UNAUTHORIZED.value(),
-                "Authentication failed at controller advice", ex.getMessage());
+        StandardException re = new StandardException(
+                Instant.now(),
+                HttpStatus.UNAUTHORIZED.value(),
+                "Authentication failed at controller advice",
+                ex.getMessage());
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(re);
     }
 }
