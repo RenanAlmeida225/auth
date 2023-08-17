@@ -37,7 +37,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         this.userRepository.save(user);
         this.confirmationRepository.save(confirmation);
         this.emailService.sendMailMessage(user.getEmail(), confirmation.getToken());
-        return;
     }
 
     @Override
