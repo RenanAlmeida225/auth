@@ -1,21 +1,12 @@
 package com.example.auth.entities;
 
-import java.time.LocalDateTime;
-import java.util.UUID;
-
-import org.springframework.data.annotation.CreatedDate;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+
+import java.time.LocalDateTime;
+import java.util.UUID;
 
 @NoArgsConstructor
 @Data
@@ -23,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "confirmations")
 public class Confirmation {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long id;
     public String token;
     @Temporal(TemporalType.TIMESTAMP)
