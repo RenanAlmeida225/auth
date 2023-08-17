@@ -22,12 +22,12 @@ public class TokenServiceImpl implements TokenService {
     public String generateToken(User user) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
-            String token = JWT.create()
+            return JWT.create()
                     .withIssuer("auth-api")
                     .withSubject(user.getEmail())
                     .withExpiresAt(genExpirationDate())
                     .sign(algorithm);
-            return token;
+
         } catch (JWTCreationException e) {
             throw new RuntimeException("Error while generation token", e);
         }
