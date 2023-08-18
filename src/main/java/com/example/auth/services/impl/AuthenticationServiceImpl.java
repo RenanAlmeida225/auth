@@ -4,7 +4,6 @@ import com.example.auth.dtos.AuthenticationDto;
 import com.example.auth.dtos.RegisterDto;
 import com.example.auth.entities.Confirmation;
 import com.example.auth.entities.User;
-import com.example.auth.expections.AuthenticationException;
 import com.example.auth.expections.EntityInvalidException;
 import com.example.auth.repositories.ConfirmationRepository;
 import com.example.auth.repositories.UserRepository;
@@ -30,7 +29,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public void register(RegisterDto data) {
-        if (this.userRepository.findByEmail(data.email()) != null) throw new AuthenticationException("user not exists");
+        if (this.userRepository.findByEmail(data.email()) != null) throw new EntityInvalidException("user invalid");
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
         User user = new User(data.email(), encryptedPassword, data.role());
         Confirmation confirmation = new Confirmation(user);
@@ -52,7 +51,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public String login(AuthenticationDto data) {
-        if (this.userRepository.findByEmail(data.email()) == null) throw new AuthenticationException("user not exists");
         UsernamePasswordAuthenticationToken usernamePassword = new UsernamePasswordAuthenticationToken(data.email(),
                 data.password());
         Authentication auth = this.authenticationManager.authenticate(usernamePassword);
